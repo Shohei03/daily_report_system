@@ -1,46 +1,44 @@
 @charset "UTF-8";
 
-body{
+body {
     color: #333333;
-    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    font-family: "Hiragino Kaku Gothic Pro", Meiryo, "MS PGothic", Helvetica,
+        Arial, sans-serif;
 }
 
-#header{
+#header {
     width: 100%;
     height: 70px;
     background-color: #333333;
 }
 
-#content{
+#content {
     width: 94%;
     margin-top: 15px;
     padding-left: 3%;
 }
 
-h1{
-    width: 94%;
-    padding-top: 17px;
-    padding-left: 3%;
+h1 {
     font-size: 24px;
-    color: #eeeeee;
+    display: inline;
 }
 
-h2{
-    font-size:36px;
+h2 {
+    font-size: 36px;
     margin-bottom: 15px;
 }
 
-li{
+li {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-p{
+p {
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-a{
+a {
     text-decoration: none;
     color: #24738e;
 }
@@ -49,22 +47,22 @@ table, tr, th, td {
     border: 1px solid #cccccc;
 }
 
-table{
+table {
     width: 100%;
     table-layout: fixed;
 }
 
-th{
+th {
     width: 26%;
     padding: 10px 2%;
 }
 
-td{
+td {
     width: 66%;
     padding: 10px 2%;
 }
 
-button{
+button {
     font-size: 14px;
     padding: 5px 10px;
 }
@@ -73,7 +71,7 @@ button{
     text-align: center;
 }
 
-#flush_success{
+#flush_success {
     width: 100%;
     padding-top: 28px;
     padding-left: 2%;
@@ -83,7 +81,7 @@ button{
     background-color: #d4edda;
 }
 
-#flush_error{
+#flush_error {
     width: 100%;
     padding-top: 28px;
     padding-left: 2%;
@@ -104,12 +102,36 @@ table#employee_list td {
 }
 
 tr.row1 {
-        background-color: #f2f2f2;
+    background-color: #f2f2f2;
 }
+
 tr.row0 {
-        background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 select {
     height: 30px;
+}
+
+#header_menu {
+    width: 57%;
+    padding-top: 17px;
+    padding-left: 3%;
+    display: inline-block;
+}
+
+#employee_name {
+    color: #cccccc;
+    width: 36%;
+    padding-right: 3%;
+    text-align: right;
+    display: inline-block;
+}
+
+#header a {
+    color: #eeeeee;
+}
+
+h1 a {
+    color: #eeeeee;
 }
