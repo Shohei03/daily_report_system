@@ -5,7 +5,8 @@ package constants;
  *
  */
 public enum ForwardConst {
-  //action
+
+    //action
     ACT("action"),
     ACT_TOP("Top"),
     ACT_EMP("Employee"),
@@ -52,9 +53,10 @@ public enum ForwardConst {
     }
 
     /**
-     * 値（文字列）取得
+     * 値(文字列)取得
      */
     public String getValue() {
         return this.text;
     }
+
 }

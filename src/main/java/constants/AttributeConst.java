@@ -6,7 +6,7 @@ package constants;
  */
 public enum AttributeConst {
 
-  //フラッシュメッセージ
+    //フラッシュメッセージ
     FLUSH("flush"),
 
     //一覧画面共通
@@ -49,7 +49,6 @@ public enum AttributeConst {
     REP_DATE("report_date"),
     REP_TITLE("title"),
     REP_CONTENT("content_msg");
-
 
     private final String text;
     private final Integer i;

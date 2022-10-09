@@ -57,13 +57,13 @@ public abstract class ActionBase {
         Method commandMethod;
         try {
 
-            // パラメータからcommandを取得
+          //パラメータからcommandを取得
             String command = request.getParameter(ForwardConst.CMD.getValue());
 
-            // commandに該当するメソッドを実行する
+            //commandに該当するメソッドを実行する
             //(例: action=Employee command=show の場合 EmployeeActionクラスのshow()メソッドを実行する)
             commandMethod = this.getClass().getDeclaredMethod(command, new Class[0]);
-            commandMethod.invoke(this, new Object[0]); // メソッドに渡す引数はなし
+            commandMethod.invoke(this, new Object[0]); //メソッドに渡す引数はなし
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException | NullPointerException e) {
 

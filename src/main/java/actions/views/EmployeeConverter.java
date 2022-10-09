@@ -8,7 +8,6 @@ import constants.JpaConst;
 import models.Employee;
 
 /**
- *
  * 従業員データのDTOモデル⇔Viewモデルの変換を行うクラス
  *
  */
@@ -47,7 +46,7 @@ public class EmployeeConverter {
      */
     public static EmployeeView toView(Employee e) {
 
-        if (e == null) {
+        if(e == null) {
             return null;
         }
 
@@ -68,7 +67,6 @@ public class EmployeeConverter {
                         : e.getDeleteFlag() == JpaConst.EMP_DEL_TRUE
                                 ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
                                 : AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
-
     }
 
     /**
@@ -100,6 +98,7 @@ public class EmployeeConverter {
         e.setCreatedAt(ev.getCreatedAt());
         e.setUpdatedAt(ev.getUpdatedAt());
         e.setDeleteFlag(ev.getDeleteFlag());
+
     }
 
 }
