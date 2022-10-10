@@ -57,7 +57,7 @@ public abstract class ActionBase {
         Method commandMethod;
         try {
 
-          //パラメータからcommandを取得
+            //パラメータからcommandを取得
             String command = request.getParameter(ForwardConst.CMD.getValue());
 
             //commandに該当するメソッドを実行する
