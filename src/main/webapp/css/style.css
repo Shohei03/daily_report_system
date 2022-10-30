@@ -159,9 +159,39 @@ table#report_list .report_action {
 }
 
 pre {
-    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    font-family: "Hiragino Kaku Gothic Pro", Meiryo, "MS PGothic", Helvetica,
+        Arial, sans-serif;
 }
 
 h3 {
     font-size: larger;
+}
+
+div.good {
+    margin: 0 0 0 auto;
+    margin-top: 10px;
+    width: 50px;
+    position: central;
+    padding: 0.2em 0.5em;
+    background: -webkit-linear-gradient(to right, rgb(200, 124, 111),
+        #ffc994);
+    background: linear-gradient(to right, rgb(255, 124, 111), #ffc994);
+    font-weight: bold;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.56);
+}
+
+div.good-lift {
+    margin: 0 0 0 auto;
+    margin-top: 10px;
+    width: 80px;
+    position: relative;
+    padding: 0.2em 0.5em;
+    background: linear-gradient(50deg, #117a80, #439f9a, #69c6b5, #8eefd1);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.56);
+}
+
+p.g_count {
+    text-align: right;
 }

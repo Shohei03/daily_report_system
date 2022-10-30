@@ -30,6 +30,7 @@ public interface JpaConst {
     int EMP_DEL_TRUE = 1;  // 削除フラグON(削除済み)
     int EMP_DEL_FALSE = 0;  // 削除フラグOFF(現役)
 
+
     // 日報テーブル
     String TABLE_REP = "reports";  // テーブル名
 
@@ -42,14 +43,29 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at";  // 登録日時
     String REP_COL_UPDATED_AT = "updated_at";  // 更新日時
 
+
+    // いいねテーブル
+    String TABLE_GOOD = "goods";  // テーブル名
+
+    // いいねテーブルカラム
+    String GOOD_COL_ID = "id";  // id
+    String GOOD_COL_EMP = "employee_id";  // 「いいね」した従業員のid
+    String GOOD_COL_REP = "report_id";  // 閲覧されているレポートのid
+
+
+
     // Entity名
     String ENTITY_EMP = "employee";  // 従業員
     String ENTITY_REP = "report";  // 日報
+    String ENTITY_GOOD = "good";  // いいね
 
     // JPQL内パラメータ
     String JPQL_PARM_CODE = "code";  // 社員番号
     String JPQL_PARM_PASSWORD = "password";  // パスワード
     String JPQL_PARM_EMPLOYEE = "employee";  // 従業員
+    String JPQL_PARM_REPORT = "report"; // 日報
+
+
 
     // NamedQueryのnameとquery
     // 全ての従業員をidの降順に取得する
@@ -83,5 +99,19 @@ public interface JpaConst {
     // 指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+
+
+    // 「いいね」されたレポートのいいね件数を取得
+    String Q_GOOD_COUNT_OF_REPORT = ENTITY_GOOD + ".count";
+    String Q_GOOD_COUNT_OF_REPORT_DEF = "SELECT COUNT(r) FROM Good AS r WHERE r.report= :" + JPQL_PARM_REPORT;
+
+    // ログインしている従業員が見ているレポートに既にいいねしている場合は1を、していない場合は0を返す
+    // いいねボタンといいね解除ボタンを切り替える際に使用する。
+    String Q_GOOD_CHANGE = ENTITY_GOOD + ".change";
+    String Q_GOOD_CHANGE_DEF = "SELECT COUNT(r) FROM Good AS r WHERE r.report =:" + JPQL_PARM_REPORT + " AND r.employee =:" + JPQL_PARM_EMPLOYEE;
+
+    // ログインしている従業員が見ている日報を取得
+    String Q_GOOD_GET = ENTITY_GOOD + ".getSelected";
+    String Q_GOOD_GET_DEF = "SELECT r FROM Good AS r WHERE r.report =:" + JPQL_PARM_REPORT + " AND r.employee =:" + JPQL_PARM_EMPLOYEE;
 
 }

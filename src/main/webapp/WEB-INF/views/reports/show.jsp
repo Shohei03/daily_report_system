@@ -4,8 +4,13 @@
 <%@ page import="constants.ForwardConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="actGood" value="${ForwardConst.ACT_GOOD.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="commCre" value="${ForwardConst.CMD_CREATE.getValue()}" />
+<c:set var="commDes" value="${ForwardConst.CMD_DESTROY.getValue()}" />
+
+
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -39,6 +44,28 @@
                 </tr>
             </tbody>
         </table>
+
+
+
+
+
+        <c:choose>
+            <c:when test="${good_judge == 0}">
+                <div class="good">
+                    <a href="<c:url value='?action=${actGood}&command=${commCre}' />">いいね</a>
+                </div>
+            </c:when>
+            <c:when test="${good_judge == 1}">
+                <div class="good-lift">
+                    <a href="<c:url value='?action=${actGood}&command=${commDes}' />">いいね解除</a>
+                </div>
+            </c:when>
+        </c:choose>
+
+        <p class="g_count">いいね&nbsp;<c:out value="${good_count}" />件</p>
+
+
+
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">
             <p>
                 <a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>

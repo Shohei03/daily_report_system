@@ -48,7 +48,11 @@ public enum AttributeConst {
     REP_ID("id"),
     REP_DATE("report_date"),
     REP_TITLE("title"),
-    REP_CONTENT("content_msg");
+    REP_CONTENT("content_msg"),
+
+    // いいね機能
+    GOOD_COUNT("good_count"),
+    GOOD_JUDGE("good_judge");
 
 
     private final String text;
@@ -72,4 +76,6 @@ public enum AttributeConst {
     public Integer getIntegerValue() {
         return this.i;
     }
+
+
 }

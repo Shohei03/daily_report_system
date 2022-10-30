@@ -150,14 +150,24 @@ public class ReportAction extends ActionBase {
         // idを条件に日報データを取得する
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
+
         if (rv == null) {
             // 該当の日報データが存在しない場合はエラー画面を表示
             forward(ForwardConst.FW_ERR_UNKNOWN);
         } else {
-            putRequestScope(AttributeConst.REPORT, rv); // 取得した日報データ
+            // putRequestScope(AttributeConst.REPORT, rv); // 取得した日報データ
+
+            putSessionScope(AttributeConst.REPORT, rv);
+
+
+
+            // goodActionのshowコマンドにredirectする。そこで、いいね件数をgoodデータより取得
+            redirect(ForwardConst.ACT_GOOD, ForwardConst.CMD_SHOW);
+
 
             // 詳細画面を表示
-            forward(ForwardConst.FW_REP_SHOW);
+            // forward(ForwardConst.FW_REP_SHOW);
+
         }
     }
 

@@ -109,6 +109,30 @@ public abstract class ActionBase {
     }
 
     /**
+     * include処理（サーブレットの処理途中に別のサーブレットの処理を行う）
+     * @param action パラメータに設定する値
+     * @param command パラメータに設定する値
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void include(ForwardConst action, ForwardConst command) throws ServletException, IOException {
+
+        // URLを構築
+        String includetUrl = request.getContextPath() + "/?action=" + action.getValue();
+        if (command != null) {
+            includetUrl = includetUrl + "&command=" + command.getValue();
+        }
+        ////////////////////////// 確認
+        System.out.println(includetUrl);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(includetUrl);
+
+        // インクルード
+        dispatcher.include(request, response);
+
+    }
+
+    /**
      * CSRF対策 token不正の場合はエラー画面を表示
      * @return true: token有効 false: token不正
      * @throws ServletException
@@ -235,6 +259,28 @@ public abstract class ActionBase {
     @SuppressWarnings("unchecked")
     protected <R> R getContextScope(PropertyConst key) {
         return (R) context.getAttribute(key.getValue());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////追記
+    /**
+     * リクエストパラメータから引数で指定したパラメータ名のオブジェクトを返却する
+     * @param key パラメータ名
+     * @return パラメータの値
+     */
+
+    protected <V> void setAttribute(AttributeConst key, V value) {
+        request.setAttribute(key.getValue(), value);
+    }
+
+    /**
+     * リクエストパラメータの引数からオブジェクトを取得する
+     * @param key パラメータ名
+     * @return パラメータの値
+     */
+    @SuppressWarnings("unchecked")
+    protected <R> R getAttribute(AttributeConst key) {
+        return (R) request.getAttribute(key.getValue());
+
     }
 
 }
