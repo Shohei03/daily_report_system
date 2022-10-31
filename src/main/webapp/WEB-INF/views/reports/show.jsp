@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="constants.ForwardConst" %>
+<%@ page import="constants.ForwardConst"%>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="actGood" value="${ForwardConst.ACT_GOOD.getValue()}" />
@@ -21,54 +22,54 @@
             <tbody>
                 <tr>
                     <th>氏名</th>
-                    <td><c:out value="${report.employee.name}" /></td>
+                    <td><c:out value="${sessionScope.report.employee.name}" /></td>
                 </tr>
                 <tr>
                     <th>日付</th>
-                    <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
+                    <fmt:parseDate value="${sessionScope.report.reportDate}" pattern="yyyy-MM-dd"
+                        var="reportDay" type="date" />
                     <td><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
                 </tr>
                 <tr>
                     <th>内容</th>
-                    <td><pre><c:out value="${report.content}" /></pre></td>
+                    <td><pre><c:out value="${sessionScope.report.content}" /></pre></td>
                 </tr>
                 <tr>
                     <th>登録日時</th>
-                    <fmt:parseDate value="${report.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createdDay" type="date" />
-                    <td><fmt:formatDate value="${createdDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                    <fmt:parseDate value="${sessionScope.report.createdAt}"
+                        pattern="yyyy-MM-dd'T'HH:mm:ss" var="createdDay" type="date" />
+                    <td><fmt:formatDate value="${createdDay}"
+                            pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
                 <tr>
                     <th>更新日時</th>
-                    <fmt:parseDate value="${report.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
-                    <td><fmt:formatDate value="${updateDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                    <fmt:parseDate value="${sessionScope.report.updatedAt}"
+                        pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
+                    <td><fmt:formatDate value="${updateDay}"
+                            pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
             </tbody>
         </table>
 
-
-
-
-
         <c:choose>
             <c:when test="${good_judge == 0}">
                 <div class="good">
-                    <a href="<c:url value='?action=${actGood}&command=${commCre}' />">いいね</a>
+                    <a href="<c:url value='?action=${actGood}&command=${commCre}&id=${sessionScope.report.id}' />">いいね</a>
                 </div>
             </c:when>
             <c:when test="${good_judge == 1}">
                 <div class="good-lift">
-                    <a href="<c:url value='?action=${actGood}&command=${commDes}' />">いいね解除</a>
+                    <a href="<c:url value='?action=${actGood}&command=${commDes}&id=${sessionScope.report.id}' />">いいね解除</a>
                 </div>
             </c:when>
         </c:choose>
 
         <p class="g_count">いいね&nbsp;<c:out value="${good_count}" />件</p>
 
-
-
-        <c:if test="${sessionScope.login_employee.id == report.employee.id}">
+        <c:if test="${sessionScope.login_employee.id == sessionScope.report.employee.id}">
             <p>
-                <a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>
+                <a
+                    href="<c:url value='?action=${actRep}&command=${commEdt}&id=${sessionScope.report.id}' />">この日報を編集する</a>
             </p>
         </c:if>
         <p>

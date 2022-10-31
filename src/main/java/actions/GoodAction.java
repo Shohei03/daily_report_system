@@ -45,12 +45,10 @@ public class GoodAction extends ActionBase {
 
     public void create() throws ServletException, IOException {
         // セッションからログイン中の従業員情報を取得
-
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
         Employee employee = EmployeeConverter.toModel(ev);
 
-        // 日報データを取得
-
+        // セッションから日報データを取得
         ReportView rv = (ReportView) getSessionScope(AttributeConst.REPORT);
         Report report = ReportConverter.toModel(rv);
 
@@ -60,7 +58,6 @@ public class GoodAction extends ActionBase {
 
         //詳細画面にリダイレクト
         redirect(ForwardConst.ACT_GOOD, ForwardConst.CMD_SHOW);
-
     }
 
     /**
@@ -71,12 +68,9 @@ public class GoodAction extends ActionBase {
 
     public void destroy() throws ServletException, IOException {
         // セッションからログイン中の従業員情報を取得
-        System.out.println("destroy command実行");
-
         EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
         // 日報データを取得
-
         ReportView rv = (ReportView) getSessionScope(AttributeConst.REPORT);
 
         // レコードを削除
@@ -94,7 +88,7 @@ public class GoodAction extends ActionBase {
      */
 
     public void show() throws ServletException, IOException {
-        // 日報オブジェクトを取得
+        // セッションから日報オブジェクトを取得
         ReportView rv = (ReportView) getSessionScope(AttributeConst.REPORT);
 
         // セッションからログイン中の従業員情報を取得
@@ -103,14 +97,12 @@ public class GoodAction extends ActionBase {
         // 指定した日報のいいね件数を取得する
         long good_count = service.count_report_good_num(rv); // 指定した日報のいいね件数
 
-        // ログインしている従業員が過去に表示されている日報に「いいね」している場合、Trueを返し、「いいね」していない場合はFalseを返す。
+        // ログインしている従業員が過去に表示されている日報に「いいね」している場合、1を返し、「いいね」していない場合は0を返す。
         long good_judge = service.change(rv, ev);
-        System.out.println("good_judge:" + good_judge);
 
-        // 上記変数をinclude元に渡す
+        // 上記変数をリクエストスコープに。
         putRequestScope(AttributeConst.GOOD_COUNT, good_count);
         putRequestScope(AttributeConst.GOOD_JUDGE, good_judge);
-        putRequestScope(AttributeConst.REPORT, rv);
 
         // 詳細画面を表示
         forward(ForwardConst.FW_REP_SHOW);
